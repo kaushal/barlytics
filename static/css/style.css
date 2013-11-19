@@ -1,0 +1,54 @@
+body {
+    padding-top: 20px;
+    background-image:url('../images/background.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    color:white;
+}
+/* Custom container */
+.container-narrow {
+    margin: 0 auto;
+    max-width: 700px;
+}
+.container-narrow > hr { margin: 30px 0 }
+/* Main marketing message and sign up button */
+.jumbotron {
+    margin: 60px 0;
+    text-align: center;
+    /* background-image: url('../img/wiki2.jpg'); */
+    background-position: center;
+    width: 700px;
+    height: 284px;
+}
+.jumbotron h1 {
+    color:white;
+    font-size: 72px;
+    line-height: 1;
+}
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+/* Supporting marketing content */
+.marketing { margin: 60px 0 }
+.marketing p + h4 { margin-top: 28px }
+#about {
+    text-align:left;
+}
+
+.btn-awesome {
+   background-color: hsl(291, 77%, 54%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F7BFFF", endColorstr="#c82fe4");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#F7BFFF), to(#c82fe4));
+  background-image: -moz-linear-gradient(top, #F7BFFF, #c82fe4);
+  background-image: -ms-linear-gradient(top, #F7BFFF, #c82fe4);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F7BFFF), color-stop(100%, #c82fe4));
+  background-image: -webkit-linear-gradient(top, #F7BFFF, #c82fe4);
+  background-image: -o-linear-gradient(top, #F7BFFF, #c82fe4);
+  background-image: linear-gradient(#F7BFFF, #c82fe4);
+  border-color: #c82fe4 #c82fe4 hsl(291, 77%, 43%);
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.72);
+  -webkit-font-smoothing: antialiased;
+}
