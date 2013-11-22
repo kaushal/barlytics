@@ -44,19 +44,3 @@ body {
     text-align:left;
 }
 
-.btn-awesome {
-   background-color: hsl(291, 77%, 54%) !important;
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F7BFFF", endColorstr="#c82fe4");
-  background-image: -khtml-gradient(linear, left top, left bottom, from(#F7BFFF), to(#c82fe4));
-  background-image: -moz-linear-gradient(top, #F7BFFF, #c82fe4);
-  background-image: -ms-linear-gradient(top, #F7BFFF, #c82fe4);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F7BFFF), color-stop(100%, #c82fe4));
-  background-image: -webkit-linear-gradient(top, #F7BFFF, #c82fe4);
-  background-image: -o-linear-gradient(top, #F7BFFF, #c82fe4);
-  background-image: linear-gradient(#F7BFFF, #c82fe4);
-  border-color: #c82fe4 #c82fe4 hsl(291, 77%, 43%);
-  color: #fff !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.72);
-  -webkit-font-smoothing: antialiased;
-}
