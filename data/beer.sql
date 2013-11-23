@@ -79,7 +79,7 @@ CREATE TABLE `drinkers` (
   `phone` varchar(12) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
   `profession` varchar(50) DEFAULT NULL,
-  `age` varchar(2) DEFAULT NULL,
+  `age` INTEGER DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -90,7 +90,7 @@ CREATE TABLE `drinkers` (
 
 LOCK TABLES `drinkers` WRITE;
 /*!40000 ALTER TABLE `drinkers` DISABLE KEYS */;
-INSERT INTO `drinkers` VALUES ('Bob','San Francisco','415-234-6789',NULL),('Erik','San Francisco','415-234-6789',NULL),('Herb','Boston',NULL,NULL),('Jesse','San Francisco','415-234-6789',NULL),('John','Chicago',NULL,'1060 West Addison'),('Justin','Boston',NULL,NULL),('Mike','Boston',NULL,NULL),('Rebecca','Chicago',NULL,'1060 West Addison'),('Tom','Chicago',NULL,'1060 West Addison'),('Vince','New York','234-456-7890','161st St and River Ave');
+INSERT INTO `drinkers` VALUES ('Bob','San Francisco','415-234-6789', NULL, 'Sofware Engineer', 24),('Erik','San Francisco','415-234-6789', NULL, 'Chef', 35),('Herb','Boston',NULL,NULL,'Florist',65),('Jesse','San Francisco','415-234-6789',NULL,'Musician',19),('John','Chicago',NULL,'1060 West Addison', 'Cashier', 27),('Justin','Boston',NULL,NULL,'Driver', 75),('Mike','Boston',NULL,NULL, 'CEO', 32),('Rebecca','Chicago',NULL,'1060 West Addison', 'Software Engineer', 32),('Tom','Chicago',NULL,'1060 West Addison', 'Manager', 42),('Vince','New York','234-456-7890','161st St and River Ave', 'CEO', 55);
 /*!40000 ALTER TABLE `drinkers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,6 +131,7 @@ DROP TABLE IF EXISTS `likes`;
 CREATE TABLE `likes` (
   `drinker` varchar(50) NOT NULL DEFAULT '',
   `beer` varchar(50) NOT NULL DEFAULT '',
+  `rating` INTEGER DEFAULT NULL,
   PRIMARY KEY (`drinker`,`beer`),
   KEY `fk_likes_beer` (`beer`),
   CONSTRAINT `fk_likes_beer` FOREIGN KEY (`beer`) REFERENCES `beers` (`name`),
@@ -144,7 +145,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES ('John','Blue Moon'),('Mike','Blue Moon'),('John','Budweiser'),('Mike','Budweiser'),('John','Creamy Dark'),('Mike','Creamy Dark'),('Mike','Hefeweizen'),('John','Killian\'s'),('John','Michelob Golden Draft'),('Mike','Michelob Golden Draft Light'),('John','Original Premium'),('Mike','Original Premium Lager'),('Jesse','Original Premium Lager Dog'),('Mike','Original Premium Lager Dog'),('John','Stolichnaya Citrona');
+INSERT INTO `likes` VALUES ('John','Blue Moon', 3),('Mike','Blue Moon', 2),('John','Budweiser', 5),('Mike','Budweiser', 4),('John','Creamy Dark', 3),('Mike','Creamy Dark', 3),('Mike','Hefeweizen', 2),('John','Killian\'s', 1),('John','Michelob Golden Draft', 2),('Mike','Michelob Golden Draft Light', 4),('John','Original Premium', 2),('Mike','Original Premium Lager', 3),('Jesse','Original Premium Lager Dog', 4),('Mike','Original Premium Lager Dog', 2),('John','Stolichnaya Citrona', 1);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,6 +177,30 @@ INSERT INTO `sells` VALUES ('A.P. Stump\'s','Hefeweizen',6.00),('Blue Angel','He
 /*!40000 ALTER TABLE `sells` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+DROP TABLE IF EXISTS 'checkin'
+CREATE TABLE `checkin` (
+    `bar` varchar(50) NOT NULL DEFAULT '',
+    `drinker` varchar(50) NOT NULL DEFAULT '',
+    `date` datetime NOT NULL DEFAULT NOW(),
+    CONSTRAINT `fk_checkin_bar` FOREIGN KEY (`bar`) REFRENCES `bars` (`name`),
+    CONSTRAINT `fk_checkin_drinker` FOREIGN KEY (`drinker`) REFERENCES `drinkers` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `checkin` WRITE;
+INSERT INTO `checkin` VALUES ('Blue Angel', 'Mike', '2013-11-23 23:32:34'),('Blue Angel', 'John', '2013-11-22 22:31:34'),('Blue Angel', 'Jesse', '2013-11-23 1:12:51'),('Blue Angel', 'Mike', '2013-11-22 22:50:34'),('Blue Angel', 'Mike', '2013-11-25 23:50:34'),('Blue Angel', 'Rebecca', '2013-11-23 21:47:12'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 23:32:34'),('Blue Angel', 'Justin', '2013-11-23 22:12:34'),('Blue Angel', 'Tom', '2013-11-23 00:22:34'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 00:12:34'),
+
+UNLOCK TABLES;
+
+
+
+
+
+
+
+
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
