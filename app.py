@@ -9,5 +9,10 @@ def index():
 def analytics():
     return render_template('analytics.html')
 
+@app.route('/test', methods = ['POST'])
+def test():
+    print request.form['user']
+    return "passed"
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
