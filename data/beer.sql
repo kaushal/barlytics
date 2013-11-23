@@ -78,8 +78,6 @@ CREATE TABLE `drinkers` (
   `city` varchar(50) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
-  `profession` varchar(50) DEFAULT NULL,
-  `age` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
