@@ -21,15 +21,27 @@
                 <br>
                 <br>
                 <form method="POST" method=post id="inputs" action="/results">
-                    <select name="dropdown" form="inputs">
+                    <select name="bar" form="inputs">
                         <option value="bar 1">bar 1</option>
                         <option value="bar 2">bar 2</option>
                         <option value="bar 3">bar 3</option>
                         <option value="bar 4">bar 4</option>
                     </select>
+                    <select name="demographic" form="inputs">
+                        <option value="age">age</option>
+                        <option value="gender">gender</option>
+                        <option value="occupation">occupation</option>
+                    </select>
+                    <select name="location" form="inputs">
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="New York">New York</option>
+                    </select>
+
                     <br>
                     <input type="submit" value="Submit">
                 </form>
+
                 <br>
                 <a class="btn btn-large btn-awesome" href="/analytics">Analyze your bar now!</a>
             </div>

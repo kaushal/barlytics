@@ -16,9 +16,10 @@ def analytics():
 
 @app.route('/results', methods = ['POST'])
 def test():
-    print request.form['dropdown']
+    print request.form['demographic']
+    print request.form['bar']
     current = connection.cursor()
-    current.execute('select * from drinkers')
+    current.execute('select * from bars where city=' + '"' + request.form['location'] + '"')
     rows = current.fetchall()
     return render_template('results.html', results=rows)
 

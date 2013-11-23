@@ -1,2 +1,9 @@
 here you go 
+<br>
 {{ results }}
+
+<br>
+{% for row in results %}
+{{row[0] + '    ' + row[1]  + '    ' + row[2]  }}
+<br>
+{% endfor %}
