@@ -11,7 +11,7 @@ def analytics():
 
 @app.route('/test', methods = ['POST'])
 def test():
-    print request.form['user']
+    print request.form['dropdown']
     return "passed"
 
 if __name__ == '__main__':
