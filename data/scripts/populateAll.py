@@ -9,6 +9,6 @@ bars.populateBars()
 beer.populateBeers()
 drinkers.populateDrinkers()
 
-links.populateLikes()
+likes.populateLikes()
 frequents.populateFrequents()
 checkin.populateCheckin()
