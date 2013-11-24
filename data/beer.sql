@@ -17,10 +17,7 @@
 
 --
 -- Table structure for table `bars`
---
-
-DROP TABLE IF EXISTS `bars`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+-- DROP TABLE IF EXISTS `bars`; /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bars` (
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -54,17 +51,6 @@ CREATE TABLE `beers` (
   `manf` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `beers`
---
-
-LOCK TABLES `beers` WRITE;
-/*!40000 ALTER TABLE `beers` DISABLE KEYS */;
-INSERT INTO `beers` VALUES ('Blue Moon','Coors Brewing Company'),('Budweiser','Anheuser-Busch'),('Creamy Dark','Jacob Leinenkugel Brewing Company'),('Extra Gold','Coors Brewing Company'),('Hefeweizen','Jacob Leinenkugel Brewing Company'),('Hefeweizen Doppelbock','Jacob Leinenkugel Brewing Company'),('ICEHOUSE','Plank Road Brewery'),('Killian\'s','Coors Brewing Company'),('Michelob Amber Bock','Anheuser-Busch'),('Michelob Golden Draft','Anheuser-Busch'),('Michelob Golden Draft Light','Anheuser-Busch'),('Michelob ULTRA','Anheuser-Busch'),('Original Premium','Jacob Leinenkugel Brewing Company'),('Original Premium Lager','Jacob Leinenkugel Brewing Company'),('Original Premium Lager Dog','Plank Road Brewery'),('Sauza Diablo','Miller Brewing Company'),('Southpaw Light','Plank Road Brewery'),('Stolichnaya Citrona','Miller Brewing Company'),('Zima','Coors Brewing Company'),('Zima Citrus','Coors Brewing Company');
-/*!40000 ALTER TABLE `beers` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `drinkers`
@@ -76,23 +62,14 @@ DROP TABLE IF EXISTS `drinkers`;
 CREATE TABLE `drinkers` (
   `name` varchar(50) NOT NULL DEFAULT '',
   `city` varchar(50) DEFAULT NULL,
-  `phone` varchar(12) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
   `profession` varchar(50) DEFAULT NULL,
   `age` INTEGER DEFAULT NULL,
+  `income` INTEGER DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `drinkers`
---
-
-LOCK TABLES `drinkers` WRITE;
-/*!40000 ALTER TABLE `drinkers` DISABLE KEYS */;
-INSERT INTO `drinkers` VALUES ('Bob','San Francisco','415-234-6789', NULL, 'Sofware Engineer', 24),('Erik','San Francisco','415-234-6789', NULL, 'Chef', 35),('Herb','Boston',NULL,NULL,'Florist',65),('Jesse','San Francisco','415-234-6789',NULL,'Musician',19),('John','Chicago',NULL,'1060 West Addison', 'Cashier', 27),('Justin','Boston',NULL,NULL,'Driver', 75),('Mike','Boston',NULL,NULL, 'CEO', 32),('Rebecca','Chicago',NULL,'1060 West Addison', 'Software Engineer', 32),('Tom','Chicago',NULL,'1060 West Addison', 'Manager', 42),('Vince','New York','234-456-7890','161st St and River Ave', 'CEO', 55);
-/*!40000 ALTER TABLE `drinkers` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `frequents`
@@ -178,28 +155,20 @@ INSERT INTO `sells` VALUES ('A.P. Stump\'s','Hefeweizen',6.00),('Blue Angel','He
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-DROP TABLE IF EXISTS 'checkin'
+DROP TABLE IF EXISTS `checkin`;
 CREATE TABLE `checkin` (
     `bar` varchar(50) NOT NULL DEFAULT '',
     `drinker` varchar(50) NOT NULL DEFAULT '',
-    `date` datetime NOT NULL DEFAULT NOW(),
-    CONSTRAINT `fk_checkin_bar` FOREIGN KEY (`bar`) REFRENCES `bars` (`name`),
+    `date` datetime NOT NULL,
+    PRIMARY KEY (`bar`, `drinker`, `date`),
+    CONSTRAINT `fk_checkin_bar` FOREIGN KEY (`bar`) REFERENCES `bars` (`name`),
     CONSTRAINT `fk_checkin_drinker` FOREIGN KEY (`drinker`) REFERENCES `drinkers` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `checkin` WRITE;
-INSERT INTO `checkin` VALUES ('Blue Angel', 'Mike', '2013-11-23 23:32:34'),('Blue Angel', 'John', '2013-11-22 22:31:34'),('Blue Angel', 'Jesse', '2013-11-23 1:12:51'),('Blue Angel', 'Mike', '2013-11-22 22:50:34'),('Blue Angel', 'Mike', '2013-11-25 23:50:34'),('Blue Angel', 'Rebecca', '2013-11-23 21:47:12'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 23:32:34'),('Blue Angel', 'Justin', '2013-11-23 22:12:34'),('Blue Angel', 'Tom', '2013-11-23 00:22:34'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 00:12:34'),
+INSERT INTO `checkin` VALUES ('Blue Angel', 'Mike', '2013-11-23 23:32:34'),('Blue Angel', 'John', '2013-11-22 22:31:34'),('Blue Angel', 'Jesse', '2013-11-23 1:12:51'),('Blue Angel', 'Mike', '2013-11-22 22:50:34'),('Blue Angel', 'Mike', '2013-11-25 23:50:34'),('Blue Angel', 'Rebecca', '2013-11-23 21:47:12'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 23:32:34'),('Blue Angel', 'Justin', '2013-11-23 22:12:34'),('Blue Angel', 'Tom', '2013-11-23 00:22:34'),('Blue Angel', 'Herb', '2013-11-23 22:33:34'),('Blue Angel', 'Erik', '2013-11-23 01:12:34');
 
 UNLOCK TABLES;
-
-
-
-
-
-
-
-
-
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
