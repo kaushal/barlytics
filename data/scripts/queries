@@ -31,3 +31,12 @@ Select Count(*) From frequents, drinkers WHERE bar = <your bar> and drinkers.pro
 
 --Find the number of each profession that comes to your bar
 select profession, count(*) from frequents, drinkers where bar = "A.P. Stump's" and drinkers.name = drinker group by drinkers.profession;
+
+--Find the number of each income bracket that comes to your bar
+select income, count(*) from frequents, drinkers where bar = "A.P. Stump's" and drinkers.name = drinker group by drinkers.income;
+
+--Find the average age of people who go to your bar
+SELECT avg(age) from frequents, drinkers WHERE drinkers.name = frequents.drinker and frequents.bar = "A.P. Stump's";
+
+
+
