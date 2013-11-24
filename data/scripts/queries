@@ -20,6 +20,9 @@ SELECT AVG(rating) from likes, drinkers where beer = "Budweiser" and drinkers.na
 --Find the rating of a beer
 Select AVG(rating) from likes where beer = <beer>;
 
+--Find the rating of your bar
+SELECT AVG(rating) from checkins where bar = <bar>;
+
 --Find the highest rated beer
 SELECT l.beer, avg(rating) as sa from likes as l group by l.beer order by sa desc Limit 1
 
@@ -38,5 +41,9 @@ select income, count(*) from frequents, drinkers where bar = "A.P. Stump's" and 
 --Find the average age of people who go to your bar
 SELECT avg(age) from frequents, drinkers WHERE drinkers.name = frequents.drinker and frequents.bar = "A.P. Stump's";
 
-
-
+beer
+rating
+profession
+income
+age
+date
