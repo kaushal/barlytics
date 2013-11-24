@@ -27,7 +27,8 @@ total = 0
 for drinker in drinkers:
     for i in range(randint(0, 10)):
         total = total + 1
-        string = 'insert into checkin values ("' + str(bars[randint(0, barCount - 1)][0]) + '", "' + str(drinker[0]) + '", "' + baseDates[randint(0, 2)] + " " + str(checkinTimes[randint(0, 6)]) + ":" + str(randint(10, 59)) + ":"  + str(randint(10, 59)) + '");'
+        rating = randint(1,5)
+        string = 'insert into checkin values ("' + str(bars[randint(0, barCount - 1)][0]) + '", "' + str(drinker[0]) + '", "' + baseDates[randint(0, 2)] + " " + str(checkinTimes[randint(0, 6)]) + ":" + str(randint(10, 59)) + ":"  + str(randint(10, 59)) + '", "' + str(rating) + '");'
         current.execute(string)
 
 connection.commit()
