@@ -1,0 +1,33 @@
+--Find the number of people who went to a bar on a particular day
+SELECT count(*) from checkin WHERE bar = <bar> AND date <= "2013-11-2<x>" AND date > "2013-11-2<y>";
+
+--Find the averge number of people who frequent your bar a day
+SELECT Count(*) from checkin WHERE bar = <bar>;
+SELECT Count(DISTINCT date) from checkin where bar = <bar>;
+->divide these two
+
+--Find in between two times
+SELECT Count(*) from checkin Where bar = <bar> and date <= "2013-11-22 01:00:00" AND date > "2013-11-22 02:00:00";
+
+
+--Find certain income
+SELECT count(*) from checkin, drinkers WHERE bar = "A.P. Stump's" AND date >= "2013-11-23 01:00:00" AND date < "2013-11-23 02:00:00" AND checkin.drinker = drinkers.name AND drinkers.income = 1;
+
+
+--Find the average rating of a beer by people who frequent a certain bar
+SELECT AVG(rating) from likes, drinkers where beer = "Budweiser" and drinkers.name in (SELECT drinker from frequents where bar = "A.P. Stump's");
+
+--Find the rating of a beer
+Select AVG(rating) from likes where beer = <beer>;
+
+--Find the highest rated beer
+SELECT l.beer, avg(rating) as sa from likes as l group by l.beer order by sa desc Limit 1
+
+--Find the highest rated beer that a particular bar sells
+TODO requires sells
+
+--Find out the number of people of a certain profession that visit your bar
+Select Count(*) From frequents, drinkers WHERE bar = <your bar> and drinkers.profession = <profession> and drinkers.name = drinker;
+
+--Find the number of each profession that comes to your bar
+select profession, count(*) from frequents, drinkers where bar = "A.P. Stump's" and drinkers.name = drinker group by drinkers.profession;
