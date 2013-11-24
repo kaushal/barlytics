@@ -21,29 +21,28 @@
                 <br>
                 <br>
                 <form method="POST" method=post id="inputs" action="/results">
+                    <br>
                     <select name="bar" form="inputs">
-                        <option value="bar 1">bar 1</option>
-                        <option value="bar 2">bar 2</option>
-                        <option value="bar 3">bar 3</option>
-                        <option value="bar 4">bar 4</option>
+                        {% for item in barNames %}
+                        <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
                     </select>
                     <select name="demographic" form="inputs">
-                        <option value="age">age</option>
-                        <option value="gender">gender</option>
-                        <option value="occupation">occupation</option>
-                    </select>
-                    <select name="location" form="inputs">
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Chicago">Chicago</option>
-                        <option value="New York">New York</option>
+                        <option value="Beer Rating">Beer</option>
+                        <option value="Bar Rating">Bar Rating</option>
+                        <option value="Customer Occupation">Customer Occupation</option>
+                        <option value="Average Income">Average Income</option>
+                        <option value="Average Age">Average Age</option>
                     </select>
 
                     <br>
+                    Select a bar and a category to analyze your bar accordingly.
+                    <br>
                     <input type="submit" value="Submit">
+                    <br>
                 </form>
 
                 <br>
-                <a class="btn btn-large btn-awesome" href="/analytics">Analyze your bar now!</a>
             </div>
 
             <br><br><br>

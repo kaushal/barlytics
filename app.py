@@ -2,7 +2,15 @@ from flask import Flask, render_template, request
 import MySQLdb as mdb
 app = Flask(__name__)
 
-connection = mdb.connect('localhost', 'user', 'pass', 'beer')
+connection = mdb.connect('localhost', 'user', 'pass', 'barlytics')
+current = connection.cursor()
+
+age_query = 'SELECT AVG(age) from frequents, drinkers where drinkers.name = frequents.drinker and frequents.bar = %s;'
+beer_query = 'SELECT l.beer, avg(rating) as sa from likes as l group by l.beer order by sa desc limit 1;'
+bar_rating_query = 'SELECT AVG(rating) from checkin where bar = %s;'
+profession_query = 'SELECT profession, count(*) from frequents, drinkers where bar = %s and drinkers.name = drinker group by drinkers.profession;'
+income_query = 'SELECT income, count(*) from frequents, drinkers where bar = %s and drinkers.name = drinker group by drinkers.income;'
+
 
 @app.route('/')
 def index():
@@ -11,17 +19,39 @@ def index():
 
 @app.route('/analytics')
 def analytics():
-    return render_template('analytics.html')
+    current.execute('select * from bars; ' )
+    names = current.fetchall()
+    namesList = []
+    for row in names:
+        namesList.append(row[0])
+    return render_template('analytics.html', barNames=namesList)
 
 
-@app.route('/results', methods = ['POST'])
+@app.route('/results', methods=['POST'])
 def test():
-    print request.form['demographic']
+    returnObject = {}
     print request.form['bar']
-    current = connection.cursor()
-    current.execute('select * from bars where city=' + '"' + request.form['location'] + '"')
-    rows = current.fetchall()
-    return render_template('results.html', results=rows)
+    bar = request.form['bar']
+    print request.form['demographic']
+    if request.form['demographic'] == 'Average Age':
+        current.execute(age_query, bar)
+        returnObject['query'] = age_query
+    elif request.form['demographic']== 'Average Income':
+        current.execute(income_query, (bar,))
+        returnObject['query'] = income_query
+    elif request.form['demographic'] == 'Beer Rating':
+        current.execute(beer_query)
+        returnObject['query'] = beer_query
+    elif request.form['demographic']== 'Bar Rating':
+        current.execute(bar_rating_query, bar)
+        returnObject['query'] = bar_rating_query
+    elif request.form['demographic']== 'Customer Occupation':
+        current.execute(profession_query, bar)
+        returnObject['query'] = profession_query
+
+    returnObject['returnRows'] = current.fetchall()
+
+    return render_template('results.html', results=returnObject)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='0.0.0.0', port=80, debug=True)

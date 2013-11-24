@@ -364,6 +364,3 @@ The Tartan Inn(Peoria, Illinois)
 Exit 197 (Pontiac, Illinois
 Mike's Tavern(Peoria, Illinois)
 
-:q
-:q!
-

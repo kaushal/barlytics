@@ -10,35 +10,10 @@ def populateBars():
 
     current = connection.cursor()
 
-    nounsList = []
-    adjectiveList = []
-    cityList = ['San Francisco', 'Chicago', 'New York', 'Austin', 'Seattle']
+    f = open('bars.txt', 'r')
 
-    print "here"
-    count = 0
-    for synset in list(wn.all_synsets('n')):
-        nounsList.append(str(synset.name).split('.')[0])
-        count = count + 1
-        if count >= 50000:
-            break
-
-    count= 0
-    print "here"
-    for synset in list(wn.all_synsets('a')):
-        adjectiveList.append(str(synset.name).split('.')[0])
-        count = count + 1
-        if count >= 50000:
-            break
-    print "here"
-    finalList = []
-    for i in range(10000):
-        string = ''
-        string = "The " + adjectiveList[randint(0, len(adjectiveList) - 1)].capitalize()
-
-        string = string + " " + nounsList[randint(0, len(nounsList) - 1)].capitalize()
-        finalList.append(string)
-
-        name = string
+    for line in f:
+        name = line
         license = str(randint(1000000, 9000000))
         city = str(address.city())
         phone = str(phone_number.phone_number_format(0))
