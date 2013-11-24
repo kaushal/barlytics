@@ -27,17 +27,6 @@ CREATE TABLE `bars` (
   `addr` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bars`
---
-
-LOCK TABLES `bars` WRITE;
-/*!40000 ALTER TABLE `bars` DISABLE KEYS */;
-INSERT INTO `bars` VALUES ('A.P. Stump\'s','MA12347','Boston',NULL,NULL),('Blue Angel','CA45678','San Francisco',NULL,NULL),('Blue Tattoo','CA45678','San Francisco','415-567-1289','1500 Market St.'),('Britannia Arms','MA12346','Boston','345-567-1289',NULL),('Cabana','CA45678','San Francisco',NULL,'1200 California Ave.'),('Caravan','IL12345','Chicago',NULL,NULL),('Club 175','CA45678','San Francisco','415-567-1289',NULL),('Coconut Willie\'s Cocktail Lounge','CA45678','San Francisco','415-567-1289',NULL),('Eulipia','IL12346','Chicago','123-456-7890','1060 West Addison'),('Gecko Grill','IL12348','Chicago',NULL,'1060 West Addison'),('Giza Hookah Lounge','IL12349','Chicago','345-678-9012',NULL),('Hedley Club','NY12345','New York',NULL,'161st St and River Ave'),('Il Fornaio','NY12346','New York',NULL,'161st St and River Ave'),('Seven Bamboo','NY12347','New York',NULL,'161st St and River Ave'),('The B-Hive','MA12348','Boston','345-567-1280',NULL),('The Backbeat','CA45678','San Francisco','415-567-1289',NULL),('The Blank Club','MA12349','Boston','345-567-1281',NULL),('The Shark and Rose','MA12345','Boston',NULL,NULL);
-/*!40000 ALTER TABLE `bars` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `beers`
@@ -67,6 +56,7 @@ CREATE TABLE `drinkers` (
   `profession` varchar(50) DEFAULT NULL,
   `age` INTEGER DEFAULT NULL,
   `income` INTEGER DEFAULT NULL,
+  `gender` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -92,16 +82,6 @@ CREATE TABLE `frequents` (
 -- Dumping data for table `frequents`
 --
 
-LOCK TABLES `frequents` WRITE;
-/*!40000 ALTER TABLE `frequents` DISABLE KEYS */;
-INSERT INTO `frequents` VALUES ('Mike','A.P. Stump\'s'),('Erik','Blue Angel'),('Jesse','Blue Angel'),('Tom','Blue Angel'),('Vince','Blue Angel'),('John','Caravan'),('Tom','Caravan'),('Bob','Coconut Willie\'s Cocktail Lounge'),('Rebecca','Coconut Willie\'s Cocktail Lounge'),('Justin','Gecko Grill'),('Rebecca','Gecko Grill'),('Herb','Seven Bamboo'),('Vince','Seven Bamboo'),('Mike','The Shark and Rose');
-/*!40000 ALTER TABLE `frequents` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `likes`
---
-
 DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -120,11 +100,6 @@ CREATE TABLE `likes` (
 -- Dumping data for table `likes`
 --
 
-LOCK TABLES `likes` WRITE;
-/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES ('John','Blue Moon', 3),('Mike','Blue Moon', 2),('John','Budweiser', 5),('Mike','Budweiser', 4),('John','Creamy Dark', 3),('Mike','Creamy Dark', 3),('Mike','Hefeweizen', 2),('John','Killian\'s', 1),('John','Michelob Golden Draft', 2),('Mike','Michelob Golden Draft Light', 4),('John','Original Premium', 2),('Mike','Original Premium Lager', 3),('Jesse','Original Premium Lager Dog', 4),('Mike','Original Premium Lager Dog', 2),('John','Stolichnaya Citrona', 1);
-/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `sells`
@@ -148,27 +123,18 @@ CREATE TABLE `sells` (
 -- Dumping data for table `sells`
 --
 
-LOCK TABLES `sells` WRITE;
-/*!40000 ALTER TABLE `sells` DISABLE KEYS */;
-INSERT INTO `sells` VALUES ('A.P. Stump\'s','Hefeweizen',6.00),('Blue Angel','Hefeweizen Doppelbock',5.50),('Blue Angel','Original Premium Lager Dog',6.25),('Blue Tattoo','Killian\'s',6.00),('Britannia Arms','Budweiser',6.50),('Cabana','Budweiser',5.00),('Cabana','Hefeweizen Doppelbock',7.00),('Cabana','Original Premium Lager Dog',5.00),('Caravan','Budweiser',5.50),('Caravan','Original Premium Lager Dog',3.50),('Club 175','Budweiser',4.50),('Coconut Willie\'s Cocktail Lounge','Budweiser',3.25),('Eulipia','Hefeweizen Doppelbock',4.50),('Gecko Grill','Budweiser',3.00),('Giza Hookah Lounge','Stolichnaya Citrona',6.00),('Hedley Club','Hefeweizen',8.00),('Seven Bamboo','Budweiser',2.50),('The B-Hive','Michelob Amber Bock',5.00),('The Backbeat','Killian\'s',3.50),('The Blank Club','Budweiser',5.50),('The Shark and Rose','Budweiser',4.50),('The Shark and Rose','Original Premium Lager Dog',5.50);
-/*!40000 ALTER TABLE `sells` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 DROP TABLE IF EXISTS `checkin`;
 CREATE TABLE `checkin` (
     `bar` varchar(50) NOT NULL DEFAULT '',
     `drinker` varchar(50) NOT NULL DEFAULT '',
     `date` datetime NOT NULL,
+    `rating` INTEGER DEFAULT NULL,
     PRIMARY KEY (`bar`, `drinker`, `date`),
     CONSTRAINT `fk_checkin_bar` FOREIGN KEY (`bar`) REFERENCES `bars` (`name`),
     CONSTRAINT `fk_checkin_drinker` FOREIGN KEY (`drinker`) REFERENCES `drinkers` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `checkin` WRITE;
-INSERT INTO `checkin` VALUES ('Blue Angel', 'Mike', '2013-11-23 23:32:34'),('Blue Angel', 'John', '2013-11-22 22:31:34'),('Blue Angel', 'Jesse', '2013-11-23 1:12:51'),('Blue Angel', 'Mike', '2013-11-22 22:50:34'),('Blue Angel', 'Mike', '2013-11-25 23:50:34'),('Blue Angel', 'Rebecca', '2013-11-23 21:47:12'),('Blue Angel', 'Herb', '2013-11-23 23:32:34'),('Blue Angel', 'Erik', '2013-11-23 23:32:34'),('Blue Angel', 'Justin', '2013-11-23 22:12:34'),('Blue Angel', 'Tom', '2013-11-23 00:22:34'),('Blue Angel', 'Herb', '2013-11-23 22:33:34'),('Blue Angel', 'Erik', '2013-11-23 01:12:34');
-
-UNLOCK TABLES;
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
