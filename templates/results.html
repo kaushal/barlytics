@@ -1,26 +1,39 @@
 <html lang="en">
-	<head>
-		<title>Analytics</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link href="static/css/bootstrap.css" rel="stylesheet">
-		<link href="/static/css/style.css" rel="stylesheet">
-	</head>
-	<body>
-		<p>
-		{{ results }}
-		</p>
+    <head>
+        <title>Analytics</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link href="static/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <p style="color:black">
+        <h2 style='color:black'>{{ results['purpose'] }}</h2>
+        </p>
 
-		<br>
-		<table class="table table-striped table-borderd table-condensed">
-		{% for row in results %}
-		<tr>
-			{% for col in row %}
-			<td> {{ col }} </td>
-			{% endfor %}
-		</tr>
-		{% endfor %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table class="table table-striped table-borderd table-condensed" style='color:black'>
+            {% for row in results['returnRows'] %}
+            <tr>
+                {% for col in row %}
+                <td> {{ col }} </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
 
-	</body>
-</html>
+        </body>
+    </html>
 

@@ -15,7 +15,7 @@ def populateFrequents():
 
     for i in range(drinkers.rowcount):
         drinker =  drinkers.fetchone()[0]
-        for i in range(randint(0,5)):
+        for i in range(randint(0,15)):
             bar = choice(allbars)[0]
 
             try:

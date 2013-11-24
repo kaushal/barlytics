@@ -8,7 +8,6 @@ def populateBeers():
 
     f = open('beer.txt', 'r')
 
-
     for line in f:
         first = 0
         brewery = ''
@@ -21,11 +20,10 @@ def populateBeers():
                 beer = item.strip()
         string = 'insert into beers values ("' + beer + '", "' + brewery + '");'
         print string
-        if beer != '' and brewery != '':
+        if beer != '' and brewery != '' and first != 0:
             print "got here"
             try:
                 current.execute(string)
             except mdb.IntegrityError:
                 print "didn't insert " + string
     connection.commit()
-    rows = current.fetchall()

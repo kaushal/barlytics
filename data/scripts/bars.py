@@ -13,7 +13,9 @@ def populateBars():
     f = open('bars.txt', 'r')
 
     for line in f:
-        name = line
+        print line
+        name = line.strip()
+        print line
         license = str(randint(1000000, 9000000))
         city = str(address.city())
         phone = str(phone_number.phone_number_format(0))

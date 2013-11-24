@@ -36,18 +36,23 @@ def test():
     if request.form['demographic'] == 'Average Age':
         current.execute(age_query, bar)
         returnObject['query'] = age_query
+        returnObject['purpose'] = 'This is the average age of the people that visit your bar'
     elif request.form['demographic']== 'Average Income':
+        returnObject['purpose'] = 'Average income bracket that your patrons are in. {0:low, 1:middle, 2:high}'
         current.execute(income_query, (bar,))
         returnObject['query'] = income_query
     elif request.form['demographic'] == 'Beer Rating':
         current.execute(beer_query)
         returnObject['query'] = beer_query
+        returnObject['purpose'] = 'This is your highest rated beer!'
     elif request.form['demographic']== 'Bar Rating':
         current.execute(bar_rating_query, bar)
+        returnObject['purpose'] = 'Average customer review of your bar.'
         returnObject['query'] = bar_rating_query
     elif request.form['demographic']== 'Customer Occupation':
         current.execute(profession_query, bar)
         returnObject['query'] = profession_query
+        returnObject['purpose'] = 'List of professions that your patrons are.'
 
     returnObject['returnRows'] = current.fetchall()
 
